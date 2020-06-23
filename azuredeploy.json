@@ -293,7 +293,6 @@
       "type": "Microsoft.Web/sites/host/functionKeys",
       "apiVersion": "2018-11-01",
       "name": "[concat(variables('functionAppName'), '/default/compressdecompress-key')]",
-      // if you want to create function level key, please replace "default" with {function name}
       "properties": {
         "name": "compressdecompress-key",
         "value": "[parameters('key_value')]"
