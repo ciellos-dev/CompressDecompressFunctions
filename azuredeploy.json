@@ -147,11 +147,11 @@
         "[resourceId('Microsoft.ApiManagement/service', variables('functionApimName'))]"
       ],
       "properties": {
-        "displayName": "Ciellos Compress Decompress functions",
+        "displayName": "Compress Decompress functions",
         "apiRevision": "1",
         "description": "Compress Decompress Functions",
         "subscriptionRequired": true,
-        "path": "[variables('functionApimName')]",
+        "path": "[variables('functionAppName')]",
         "protocols": [
           "https"
         ],
