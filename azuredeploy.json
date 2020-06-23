@@ -275,7 +275,7 @@
         "numberOfWorkers": 1
       }
     },
-    { 
+    {
       "type": "Microsoft.Web/sites/hostNameBindings",
       "apiVersion": "2018-11-01",
       "name": "[concat(variables('functionAppName'), '/', variables('functionAppName'), '.azurewebsites.net')]",
@@ -290,13 +290,10 @@
       }
     },
     {
-      "type": "Microsoft.Web/sites/host/functionKeys",
-      "apiVersion": "2018-11-01",
-      "name": "[concat(variables('functionAppName'), '/default/apimanagement')]",
-      "properties": {
-        "name": "compressdecompress-key",
-        "value": "[parameters('key_value')]"
-      }
+      "name": "compressdecompress-key",
+      "type": "Microsoft.Web/sites/functions/keys",
+      "apiVersion": "2018-02-01",
+      "value": "[parameters('key_value')]"
     },
     {
       "apiVersion": "2018-11-01",
