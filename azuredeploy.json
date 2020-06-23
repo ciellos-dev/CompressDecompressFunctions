@@ -81,7 +81,6 @@
     "functionAppName": "[parameters('appName')]",
     "functionApimName": "[concat(parameters('appName'), '-apim')]",
     "functionAppKey": "[concat(variables('functionAppName'), '-key')]",
-    "x-key-name": "[concat('{{' , variables('functionAppKey'), '}}')]",
     "hostingPlanName": "[concat(parameters('appName'), '-plan')]",
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'functions')]",
     "functionsName": "[concat(variables('functionAppName'), '-functions')]",
@@ -125,12 +124,12 @@
     {
       "type": "Microsoft.ApiManagement/service/namedValues",
       "apiVersion": "2019-12-01",
-      "name": "[concat(variables('functionApimName'), '/' , variables('functionAppKey'))]",
+      "name": "[concat(variables('functionApimName'), '/compressdecompress-key')]",
       "dependsOn": [
         "[resourceId('Microsoft.ApiManagement/service', variables('functionApimName'))]"
       ],
       "properties": {
-        "displayName": "[variables('functionAppKey')]",
+        "displayName": "compressdecompress-key",
         "tags": [
           "key",
           "function",
@@ -234,7 +233,7 @@
         "credentials": {
           "header": {
             "x-functions-key": [
-              "CieTestAF-key"
+              "{{compressdecompress-key}}"
             ]
           }
         }
