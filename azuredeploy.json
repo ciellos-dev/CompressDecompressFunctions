@@ -290,16 +290,16 @@
       }
     },
     {
-      "type": "Microsoft.Web/sites/host/functionKeys",
       "apiVersion": "2018-11-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', variables('functionAppName'))]"
+      ],
       "name": "[concat(variables('functionAppName'), '/default/compressdecompress-key')]",
       "properties": {
         "name": "compressdecompress-key",
         "value": "[parameters('key_value')]"
       },
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('functionAppName'))]"
-      ]
+      "type": "Microsoft.Web/sites/host/functionKeys"
     },
     {
       "apiVersion": "2018-11-01",
@@ -315,6 +315,9 @@
         "name": "[variables('functionAppName')]",
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
         "clientAffinityEnabled": false,
+        "apiManagementConfig": {
+          "id": "[resourceId('Microsoft.ApiManagement/service', variables('functionApimName'))]"
+        },
         "siteConfig": {
           "alwaysOn": true,
           "cors": {
