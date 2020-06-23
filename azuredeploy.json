@@ -308,9 +308,9 @@
       "location": "[variables('location')]",
       "kind": "functionapp",
       "dependsOn": [
+        "[resourceId('Microsoft.ApiManagement/service', variables('functionApimName'))]",
         "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
-        "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]",
-        "[resourceId('Microsoft.ApiManagement/service', variables('functionApimName'))]"
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
       ],
       "properties": {
         "name": "[variables('functionAppName')]",
