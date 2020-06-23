@@ -275,7 +275,7 @@
         "numberOfWorkers": 1
       }
     },
-    {
+    { 
       "type": "Microsoft.Web/sites/hostNameBindings",
       "apiVersion": "2018-11-01",
       "name": "[concat(variables('functionAppName'), '/', variables('functionAppName'), '.azurewebsites.net')]",
