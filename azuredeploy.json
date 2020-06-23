@@ -233,7 +233,7 @@
         "credentials": {
           "header": {
             "x-functions-key": [
-              "{{compressdecompress-key}}"
+              "compressdecompress-key"
             ]
           }
         }
