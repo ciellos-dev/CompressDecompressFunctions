@@ -317,7 +317,7 @@
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
         "clientAffinityEnabled": false,
         "apiManagementConfig": {
-          "id": "[resourceId('Microsoft.ApiManagement/service', variables('functionApimName'))]"
+          "id": "[resourceId('Microsoft.ApiManagement/service/apis', variables('functionApimName'), variables('functionsName'))]"
         },
         "siteConfig": {
           "alwaysOn": true,
