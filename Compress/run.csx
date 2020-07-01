@@ -31,12 +31,13 @@ public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
         file.Data = obj.content;
         file.encodeType = obj.encodeType;
         
-        var nameOfPropertyBOM = "BOM";
-        var propertyInfoBOM = obj.GetType().GetProperty(nameOfPropertyBOM);
-        if (propertyInfoBOM != null)
+        try
         {
-            var value = propertyInfoBOM.GetValue(obj, null);
-            file.BOM = value;
+            file.BOM = obj.BOM;    
+        }
+        catch
+        {
+            file.BOM = false;
         }
 
 
