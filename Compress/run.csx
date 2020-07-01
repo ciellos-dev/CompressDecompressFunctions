@@ -30,6 +30,7 @@ public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
         file.Name = obj.name;
         file.Data = obj.content;
         file.encodeType = obj.encodeType;
+        file.BOM = obj.BOM;
 
         var nameOfProperty = "insertIfEmpty";
         var propertyInfo = obj.GetType().GetProperty(nameOfProperty);
@@ -69,6 +70,7 @@ public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
 public static byte[] GeneratePackage(List<ArchiveFile> fileList, ILogger log)
 {
     byte[] result;
+    string BOM = "\uFEFF";
     log.LogInformation("Generating zip archive.");
 
     using (var packageStream = new MemoryStream())
@@ -92,7 +94,15 @@ public static byte[] GeneratePackage(List<ArchiveFile> fileList, ILogger log)
                     {
                         encoding = Encoding.UTF8;
                     }
-                    byte[] array = encoding.GetBytes(virtualFile.Data);
+                    
+                    string endData = virtualFile.Data;
+                    
+                    if(virtualFile.BOM)
+                    {
+                        endData = BOM + virtualFile.Data;
+                    }
+                    
+                    byte[] array = encoding.GetBytes(endData);
                     using (var sourceFileStream = new MemoryStream(array))
 
                     using (var zipEntryStream = zipFile.Open())
@@ -116,4 +126,5 @@ public class ArchiveFile
     public string Data;
     public bool InsertIfEmpty;
     public string encodeType = "";
+    public bool BOM;
 }
