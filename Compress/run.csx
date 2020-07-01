@@ -30,7 +30,15 @@ public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
         file.Name = obj.name;
         file.Data = obj.content;
         file.encodeType = obj.encodeType;
-        file.BOM = obj.BOM;
+        
+        var nameOfPropertyBOM = "BOM";
+        var propertyInfoBOM = obj.GetType().GetProperty(nameOfPropertyBOM);
+        if (propertyInfoBOM != null)
+        {
+            var value = propertyInfoBOM.GetValue(obj, null);
+            file.BOM = value;
+        }
+
 
         var nameOfProperty = "insertIfEmpty";
         var propertyInfo = obj.GetType().GetProperty(nameOfProperty);
