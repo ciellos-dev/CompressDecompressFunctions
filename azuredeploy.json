@@ -11,7 +11,7 @@
     },
     "sku": {
       "type": "string",
-      "defaultValue": "S1",
+      "defaultValue": "Y1",
       "metadata": {
         "description": "The pricing tier for the hosting plan."
       }
@@ -320,7 +320,7 @@
           "id": "[resourceId('Microsoft.ApiManagement/service/apis', variables('functionApimName'), variables('functionsName'))]"
         },
         "siteConfig": {
-          "alwaysOn": true,
+          "alwaysOn": false,
           "cors": {
             "allowedOrigins": [
               "*"
